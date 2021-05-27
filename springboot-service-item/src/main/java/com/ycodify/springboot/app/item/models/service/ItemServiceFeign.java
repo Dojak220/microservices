@@ -1,9 +1,9 @@
 package com.ycodify.springboot.app.item.models.service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,13 @@ import com.ycodify.springboot.app.item.models.Item;
 @Primary
 public class ItemServiceFeign implements ItemService {
 
+	@Autowired
 	private ProductClientRest clientFeign;
-	
+
 	@Override
 	public List<Item> findAll() {
-		return clientFeign.getProducts().stream().map(product -> new Item(product, 1)).collect(Collectors.toList());
+		return clientFeign.getProducts().stream().map(product -> new Item(product, 1))
+				.collect(Collectors.toList());
 	}
 
 	@Override

@@ -16,8 +16,8 @@ public class ItemController {
 
 	@Autowired
 	@Qualifier("serviceFeign")
+//	@Qualifier("serviceRestTemplate")
 	private ItemService itemService;
-
 	@GetMapping("/items")
 	public List<Item> getItems() {
 		return itemService.findAll();
